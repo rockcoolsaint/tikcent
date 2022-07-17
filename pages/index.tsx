@@ -1,11 +1,41 @@
+import axios from 'axios'
 import type { NextPage } from 'next'
+import { useState, useEffect, useRef } from 'react'
+import NoResults from '../components/NoResults'
+import VideoCard from '../components/VideoCard'
+import { Video } from '../types'
 
-const Home: NextPage = () => {
+interface IProps {
+  videos: Video[],
+}
+
+const Home = ({ videos }: IProps) => {
+  console.log(videos);
+
   return (
-    <div className="text-3xl font-bold underline">
-      TikTik
+    <div className="flex flex-col gap-10 videos h-full">
+      {videos.length ? (
+        videos.map((video: Video) => (
+          <VideoCard post={video} key={video._id} />
+        ))
+      ) : (
+        <NoResults text={'No Videos'} />
+      )}
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  
+  const { data: { data } } = await axios.get(`http://localhost:3000/api/post`);
+
+  // console.log(response.data.name);
+
+  return {
+    props: {
+      videos: data
+    }
+  }
 }
 
 export default Home
