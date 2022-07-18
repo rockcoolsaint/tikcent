@@ -2,10 +2,10 @@ import { NextPage } from 'next'
 import React from 'react'
 
 interface IProps {
-  text: string
+  text: string;
 }
 
-const NoResults: NextPage<IProps> = ({ text }) => {
+const NoResults = ({ text }: IProps) => {
   return (
     <div>NoResults</div>
   )
