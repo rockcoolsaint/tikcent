@@ -24,15 +24,16 @@ const Upload = () => {
     const selectedFile = e.target.files[0];
     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
-    if (fileTypes) {
+    if (fileTypes.includes(selectedFile.type)) {
+      setIsLoading(true);
       client.assets.upload('file', selectedFile, {
         contentType: selectedFile.type,
         filename: selectedFile.name
       })
-        .then((data) => {
-          setVideoAsset(data)
-          setIsLoading(false);
-        })
+      .then((data) => {
+        setVideoAsset(data);
+        setIsLoading(false);
+      })
     } else {
       setIsLoading(false);
       setWrongFileType(true);
@@ -42,7 +43,7 @@ const Upload = () => {
   const handlePost = async () => {
     if (caption && videoAsset?._id && category) {
       setSavingPost(true);
-
+      console.log(videoAsset);
       const document = {
         _type: 'post',
         caption,
@@ -60,7 +61,7 @@ const Upload = () => {
         },
         topic: category
       }
-
+      
       await axios.post('http://localhost:3000/api/post', document);
 
       router.push('/');
