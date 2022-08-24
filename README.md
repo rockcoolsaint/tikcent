@@ -2,7 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, clone the repository and cd into the project root directory
+
+Then run the development server:
+
+In a terminal, run any npm or yarn commands below
 
 ```bash
 npm run dev
@@ -12,11 +16,18 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Sanity-Backend
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+From the root directory, cd into the sanity-backend directory and run the command
+- `sanity start`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Environmental varialbles
+In order for this application to work as expected, you need to create a file `.env.development` and copy the contents of the `.sample_env.development`
+Also replace the necessary keys with the appropriate variable
+
+- NEXT_PUBLIC_SANITY_TOKEN: to be generated from the sanity-backend API settings
+- NEXT_SANITY_PROJECT_ID: to be copied from the sanity-backend app
+- NEXT_PUBLIC_GOOGLE_API_TOKEN: to be gotten from google cloud by creating an OAuth client ID credential 
 
 ## Learn More
 
